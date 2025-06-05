@@ -7,42 +7,59 @@
     <style type="text/css">
       body {
         min-height: 100vh;
-        background: linear-gradient(120deg, #16181d 0%, #444950 100%);
+        background: linear-gradient(120deg, #141e30 0%, #243b55 100%);
         margin: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         color: #f5f6fa;
-        padding: 40px 10px 20px 10px;
+        padding: 48px 12px 28px 12px;
         font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
-        gap: 32px;
+        gap: 38px;
+        letter-spacing: 0.02em;
       }
 
       .glass {
         width: 100%;
-        max-width: 540px;
-        margin: 18px auto;
-        padding: 36px 32px;
-        border-radius: 22px;
-        background: rgba(30, 32, 36, 0.35);
-        box-shadow: 0 8px 40px 0 rgba(31,38,135,0.20), 0 2px 8px 0 rgba(0,0,0,0.10);
-        backdrop-filter: blur(16px) saturate(150%);
-        -webkit-backdrop-filter: blur(16px) saturate(150%);
-        border: 1.5px solid rgba(255,255,255,0.12);
+        max-width: 520px;
+        margin: 20px auto;
+        padding: 38px 38px 32px 38px;
+        border-radius: 28px;
+        background: rgba(34, 40, 49, 0.36);
+        box-shadow: 0 10px 48px 0 rgba(31,38,135,0.22), 0 2px 10px 0 rgba(0,0,0,0.13);
+        backdrop-filter: blur(22px) saturate(170%);
+        -webkit-backdrop-filter: blur(22px) saturate(170%);
+        border: 2px solid rgba(255,255,255,0.13);
         text-align: center;
-        font-size: 1.18rem;
-        transition: box-shadow 0.3s;
+        font-size: 1.21rem;
+        transition: box-shadow 0.29s, transform 0.15s;
+        position: relative;
+        overflow: hidden;
+      }
+      .glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        background: linear-gradient(120deg, rgba(0,219,222,0.07) 0%, rgba(252,0,255,0.06) 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .glass > * {
+        position: relative;
+        z-index: 1;
       }
       .glass:hover {
-        box-shadow: 0 16px 48px 0 rgba(31,38,135,0.25), 0 4px 12px 0 rgba(0,0,0,0.14);
+        box-shadow: 0 18px 56px 0 rgba(31,38,135,0.28), 0 5px 20px 0 rgba(0,0,0,0.19);
+        transform: translateY(-3px) scale(1.017);
       }
 
       h1 {
-        font-size: 2.3rem;
-        letter-spacing: 2px;
+        font-size: 2.5rem;
+        letter-spacing: 2.5px;
         margin-bottom: 18px;
-        font-weight: 700;
+        font-weight: 800;
         background: linear-gradient(90deg, #8ec5fc, #e0c3fc, #00dbde, #fc00ff);
         background-clip: text;
         -webkit-background-clip: text;
@@ -51,15 +68,16 @@
         margin-top: 0;
       }
       h2 {
-        font-size: 1.4rem;
-        color: #6dd5fa;
+        font-size: 1.45rem;
+        color: #00dbde;
         margin-bottom: 14px;
         margin-top: 0;
-        letter-spacing: 1px;
+        letter-spacing: 1.1px;
+        font-weight: 700;
       }
       .milestone {
         margin: 0 0 12px 0;
-        font-size: 1.05rem;
+        font-size: 1.07rem;
         display: flex;
         align-items: flex-start;
         gap: 10px;
@@ -76,46 +94,93 @@
         flex: 1;
         color: #f5f6fa;
       }
-
-      .link-btn {
-        display: inline-block;
-        padding: 12px 34px;
-        margin-top: 12px;
-        font-size: 1.13rem;
+      .nav-link {
+        color: #8ec5fc;
+        text-decoration: none;
         font-weight: 600;
+        border-bottom: 1.5px dashed #8ec5fc77;
+        transition: color 0.2s, border-bottom 0.2s;
+        margin-top: 8px;
+        display: inline-block;
+      }
+      .nav-link:hover {
+        color: #fc00ff;
+        border-bottom: 1.5px solid #fc00ff99;
+      }
+      .repo-link {
         color: #fff;
         background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
-        border: none;
-        border-radius: 14px;
-        box-shadow: 0 3px 18px 0 rgba(31,38,135,0.17);
-        cursor: pointer;
-        transition: background 0.3s, transform 0.18s;
-        outline: none;
+        padding: 7px 22px;
+        border-radius: 11px;
         text-decoration: none;
-        letter-spacing: 1px;
+        font-weight: 600;
+        font-size: 1.07rem;
+        margin: 8px auto 0 auto;
+        display: inline-block;
+        transition: background 0.28s, transform 0.16s;
+        box-shadow: 0 1px 8px 0 rgba(31,38,135,0.10);
       }
-      .link-btn:hover {
+      .repo-link:hover {
         background: linear-gradient(90deg, #fc00ff 0%, #00dbde 100%);
         transform: scale(1.045);
       }
+      .link-btn {
+        display: inline-block;
+        padding: 13px 38px;
+        margin-top: 18px;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 3px 18px 0 rgba(31,38,135,0.19);
+        cursor: pointer;
+        transition: background 0.30s, transform 0.19s;
+        outline: none;
+        text-decoration: none;
+        letter-spacing: 1.2px;
+      }
+      .link-btn:hover {
+        background: linear-gradient(90deg, #fc00ff 0%, #00dbde 100%);
+        transform: scale(1.055);
+      }
+      .desc-main {
+        margin-bottom: 10px;
+        font-size: 1.22rem;
+        font-weight: 400;
+        color: #d2e1fa;
+      }
+      .footer {
+        color: #869ab8;
+        font-size: 0.98rem;
+        margin-top: 42px;
+        margin-bottom: 0;
+        opacity: 0.6;
+        letter-spacing: 0.6px;
+        text-align: center;
+      }
     </style>
   </head>
-
   <body>
     <div class="glass">
       <h1>FJ Repo</h1>
-      <p>欢迎来到FJ语言</p>
-      <p>&lt;- 返回wina005.github.io</p>
+      <p class="desc-main">欢迎来到 FJ 语言</p>
+      <a class="nav-link" href="https://wina005.github.io">&larr; 返回 wina005.github.io</a>
     </div>
 
     <div class="glass">
       <h2>发布版本</h2>
-      <a href="#">Release</a>
+      <a class="repo-link" href="#">Release</a>
     </div>
 
     <div class="glass">
       <h2>官方文档</h2>
       <a class="link-btn" href="#" target="_blank">立刻观看官方文档</a>
+    </div>
+    
+    <div class="footer">
+      &copy; 2025 FJ Language | Designed by Wina
     </div>
   </body>
 </html>
